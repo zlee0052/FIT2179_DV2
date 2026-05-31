@@ -1,32 +1,118 @@
-# DV2 Malaysia Tourism Dataset Pack
+# Malaysia Tourism Rebound Was Strong — But Uneven
 
-Prepared for a Vega-Lite / VS Code DV2 project. All extracted CSVs are in `/data`.
+This project is created for **FIT2179 Data Visualisation 2** at **Monash University Malaysia**.
 
-## Recommended story
-**Malaysia Tourism Recovery & Transformation:** how international visitors returned in 2024, where they came from, what they spent on, and which states/hotel markets benefited.
+The visualisation explores Malaysia’s tourism recovery in 2024 through visitor arrivals, source markets, tourism receipts, hotel demand, domestic and foreign hotel guests, and air connectivity. The main story is that Malaysia’s tourism rebound was strong, but uneven across markets, sectors, and states.
 
-## 10 chart plan
-1. `monthly_foreign_visitors_2023_2024.csv` — line chart comparing monthly 2023 vs 2024 foreign visitors.
-2. `mode_of_transport_2023_2024.csv` — bar/donut chart showing how visitors entered Malaysia.
-3. `top20_source_markets_visitors_2023_2024.csv` — ranked bar chart of top source markets.
-4. `top20_source_markets_visitors_2023_2024.csv` — dumbbell chart comparing 2023 vs 2024 by country.
-5. `visitor_expenditure_items_2023_2024.csv` — spending composition bar/treemap.
-6. `source_markets_arrivals_receipts_joined_2024.csv` — scatterplot: arrivals vs receipts, with per-visitor spend in tooltip.
-7. `hotel_supply_by_state_2023_2024.csv` — state bar chart or map for hotel rooms.
-8. `hotel_occupancy_by_state_2023_2024.csv` — choropleth map of average hotel occupancy rate.
-9. `hotel_guests_by_state_2023_2024.csv` — stacked bar chart showing domestic vs foreign hotel guests by state.
-10. `flight_connectivity_to_malaysia_by_region_2023_2024.csv` — bar chart of weekly seat capacity growth by region.
 
-Extra useful map-ready file: `state_tourism_map_ready_2024.csv`. Use with this TopoJSON URL:
-https://raw.githubusercontent.com/jnewbery/CartogramMalaysia/master/public/data/malaysia-states.topojson
+## Project Overview
 
-In Vega-Lite, join `topo_name` in the CSV to the TopoJSON state name/id. Note: the TopoJSON uses **Penang**, while Tourism Malaysia tables use **Pulau Pinang**, so I added a `topo_name` column.
+This project uses **Vega-Lite** to create ten data visualisations in a single scrolling webpage. The page is designed as a guided data story for a general Malaysian audience.
 
-## Important labelling note
-The Tourism Malaysia 2024 PDF uses **foreign visitors** for the 37,961,485 figure. A visitor includes tourists and excursionists. Avoid labelling these rows as only “tourists” unless your chart uses a separate tourist-only dataset.
+The story is divided into three sections:
 
-## Source summary
-See `source_manifest.csv` for URLs. Keep these source links in your GitHub page footer/metadata section.
+1. **The rebound was visible in arrivals and entry routes**
+2. **The recovery was shaped by different markets and spending patterns**
+3. **The rebound was uneven across places and supported by infrastructure**
 
-## Assignment reminder
-DV2 requires at least one map, two data sources, at least 10 charts, Vega-Lite, and a publicly accessible GitHub page.
+## Visualisations Included
+
+1. Monthly foreign visitor arrivals, 2023 vs 2024
+2. Foreign visitors by mode of entry
+3. Top source markets for Malaysia
+4. Source market growth from 2023 to 2024
+5. Tourism receipts by spending category
+6. Visitor arrivals vs tourism receipts by source market
+7. Hotel occupancy rate by state using a choropleth map
+8. Hotel guests by state using a proportional symbol map
+9. Domestic vs foreign hotel guest share by state using a heatmap
+10. Flight seat capacity by destination region using a slope chart
+
+## Tools and Libraries
+
+* HTML
+* CSS
+* JavaScript
+* Vega
+* Vega-Lite
+* Vega-Embed
+* GitHub Pages
+
+## Data Sources
+
+The datasets used in this project are based on publicly available tourism statistics and reports, mainly from:
+
+* Tourism Malaysia official statistics reports
+* Official Malaysia tourism datasets
+* Public Malaysia state TopoJSON map data
+
+The data was cleaned and reshaped for visualisation purposes. Some derived values were created, including:
+
+* Growth percentages
+* Market share percentages
+* Foreign guest share
+* Domestic guest share
+* Receipts per visitor
+* Year-based long-format data for Vega-Lite charts
+
+## File Structure
+
+```text
+FIT2179-DV2/
+│
+├── index.html
+├── styles.css
+├── README.md
+│
+├── js/
+│   └── vega_lite_vis.js
+│
+├── charts/
+│   ├── chart1_monthly_visitors.json
+│   ├── chart2_entry_mode.json
+│   ├── chart3_source_markets.json
+│   ├── chart4_market_growth.json
+│   ├── chart5_spending_categories.json
+│   ├── chart6_arrivals_vs_receipts.json
+│   ├── chart7_occupancy_map.json
+│   ├── chart8_hotel_guests_symbol_map.json
+│   ├── chart9_domestic_foreign_heatmap.json
+│   └── chart10_flight_connectivity_slope.json
+│
+└── data/
+    ├── monthly_foreign_visitors_2023_2024.csv
+    ├── entry_mode_2023_2024.csv
+    ├── source_markets_2023_2024.csv
+    ├── tourism_receipts_by_category_2023_2024.csv
+    ├── source_markets_arrivals_receipts_joined_2024.csv
+    ├── hotel_occupancy_by_state_2023_2024.csv
+    ├── hotel_guests_by_state_2023_2024.csv
+    └── flight_connectivity_to_malaysia_by_region_2023_2024.csv
+```
+
+## Design Rationale
+
+Different chart idioms were selected to match the type of data being shown.
+
+* Line charts are used for time trends.
+* Dumbbell charts are used for year-to-year comparison.
+* Bar and lollipop charts are used for ranking and category comparison.
+* Bubble scatterplots are used to compare visitor volume and tourism value.
+* A choropleth map is used only for normalised data, such as hotel occupancy rate.
+* A proportional symbol map is used for absolute values, such as total hotel guests.
+* A heatmap is used to compare domestic and foreign guest shares.
+* A slope chart is used to show changes in air connectivity between 2023 and 2024.
+
+The visualisation uses annotations, section headers, tooltips, and concise narrative text to guide the reader through the story.
+
+## Author
+
+Created by: **Lee Zhi Ming**
+Unit: **FIT2179 Data Visualisation 2**
+Institution: **Monash University Malaysia**
+Date: **May 2026**
+
+## AI Acknowledgement
+Generative AI tools were used to support wording refinement, debugging, and data preparation.
+
+Generative AI tools were used to support coding guidance, wording refinement, debugging, and data preparation. The final design, implementation, and interpretation were reviewed and edited by the author.
