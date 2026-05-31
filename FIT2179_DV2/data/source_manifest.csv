@@ -1,6 +1,0 @@
-source_name,url,used_for
-Tourism Malaysia Statistics in Brief 2024 PDF,https://data.tourism.gov.my/frontend/pdf/New_Final_Malaysia%20Tourism%20Statistics%20in%20Brief%202024.pdf,"monthly visitors, transport mode, source countries, expenditure, receipts, hotel supply, occupancy, hotel guests, flight connectivity"
-DOSM Domestic Tourism Survey States 2024 release,https://www.dosm.gov.my/portal-main/release-content/domestic-tourism-survey-states-2024,"domestic tourism national KPIs, receipts narrative, ALOS"
-data.gov.my arrivals full dataset,https://data.gov.my/data-catalogue/arrivals,optional monthly foreign arrivals by nationality if you want raw monthly data in Vega-Lite
-data.gov.my arrivals by state of entry full dataset,https://data.gov.my/data-catalogue/arrivals_soe,optional point-of-entry/state-of-entry map or chart
-Malaysia states TopoJSON,https://raw.githubusercontent.com/jnewbery/CartogramMalaysia/master/public/data/malaysia-states.topojson,Vega-Lite map geometry; join on feature properties.Name or id to topo_name
