@@ -1,0 +1,207 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": 760,
+  "height": 460,
+  "title": {
+    "text": "Hotel Guests Clustered Around Major Tourism States",
+    "subtitle": "Circle size shows total hotel guests in 2024. Colour shows foreign guest share.",
+    "anchor": "start",
+    "fontSize": 20,
+    "subtitleFontSize": 13,
+    "fontWeight": "bold",
+    "subtitleFontWeight": "normal",
+    "offset": 12
+  },
+  "data": {
+    "url": "data/hotel_guests_by_state_2023_2024.csv"
+  },
+  "transform": [
+    {
+      "calculate": "datum.state == 'Johor' ? 103.4 : datum.state == 'Kedah' ? 100.5 : datum.state == 'Kelantan' ? 102.2 : datum.state == 'Melaka' ? 102.3 : datum.state == 'Negeri Sembilan' ? 102.0 : datum.state == 'Pahang' ? 102.9 : datum.state == 'Pulau Pinang' || datum.state == 'Penang' ? 100.3 : datum.state == 'Perak' ? 101.1 : datum.state == 'Perlis' ? 100.2 : datum.state == 'Sabah' ? 114.95 : datum.state == 'Sarawak' ? 111.70 : datum.state == 'Selangor' ? 101.5 : datum.state == 'Terengganu' ? 103.0 : datum.state == 'Kuala Lumpur' ? 101.7 : datum.state == 'Labuan' ? 114.00 : datum.state == 'Putrajaya' ? 101.7 : 109",
+      "as": "longitude"
+    },
+    {
+      "calculate": "datum.state == 'Johor' ? 1.8 : datum.state == 'Kedah' ? 6.1 : datum.state == 'Kelantan' ? 5.3 : datum.state == 'Melaka' ? 2.3 : datum.state == 'Negeri Sembilan' ? 2.7 : datum.state == 'Pahang' ? 3.8 : datum.state == 'Pulau Pinang' || datum.state == 'Penang' ? 5.4 : datum.state == 'Perak' ? 4.7 : datum.state == 'Perlis' ? 6.5 : datum.state == 'Sabah' ? 5.45 : datum.state == 'Sarawak' ? 2.85 : datum.state == 'Selangor' ? 3.2 : datum.state == 'Terengganu' ? 5.0 : datum.state == 'Kuala Lumpur' ? 3.1 : datum.state == 'Labuan' ? 5.35 : datum.state == 'Putrajaya' ? 2.9 : 4",
+      "as": "latitude"
+    },
+    {
+      "calculate": "datum.foreign_share_2024_pct == null ? datum.foreign_guests_2024 / datum.total_guests_2024 * 100 : datum.foreign_share_2024_pct",
+      "as": "foreign_share"
+    },
+    {
+      "filter": "datum.state != 'Putrajaya'&& datum.state != 'Labuan'"
+    },
+    {
+      "filter": "isValid(datum.total_guests_2024) && isValid(datum.longitude) && isValid(datum.latitude)"
+    }
+  ],
+  "layer": [
+    {
+      "data": {
+        "url": "https://raw.githubusercontent.com/jnewbery/CartogramMalaysia/master/public/data/malaysia-states.topojson",
+        "format": {
+          "type": "topojson",
+          "feature": "states"
+        }
+      },
+      "projection": {
+        "type": "mercator",
+        "center": [109, 4],
+        "scale": 2600,
+        "translate": [435, 235]
+      },
+      "mark": {
+        "type": "geoshape",
+        "fill": "#d1dae6",
+        "stroke": "white",
+        "strokeWidth": 1
+      }
+    },
+    {
+      "projection": {
+        "type": "mercator",
+        "center": [109, 4],
+        "scale": 2600,
+        "translate": [435, 235]
+      },
+      "mark": {
+        "type": "circle",
+        "opacity": 0.65,
+        "stroke": "white",
+        "strokeWidth": 1.2
+      },
+      "encoding": {
+        "longitude": {
+          "field": "longitude",
+          "type": "quantitative"
+        },
+        "latitude": {
+          "field": "latitude",
+          "type": "quantitative"
+        },
+        "size": {
+          "field": "total_guests_2024",
+          "type": "quantitative",
+          "title": "Total hotel guests (millions)",
+          "scale": {
+            "type": "sqrt",
+            "domain": [0, 20000000],
+            "range": [10, 1000]
+          },
+          "legend": {
+            "orient": "right",
+            "values": [1000000, 5000000, 10000000, 20000000],
+            "titleFontSize": 11,
+            "labelFontSize": 10,
+            "titlePadding": 22,
+            "offset": 20,
+            "labelExpr": "format(datum.value / 1000000, '.0f') + 'M'",
+            "symbolFillColor": "#67b7d1",
+            "symbolStrokeColor": "#3b8fab",
+            "symbolStrokeWidth": 1.5
+          }
+        },
+        "color": {
+          "field": "foreign_share",
+          "type": "quantitative",
+          "title": "Foreign guest share (%)",
+          "scale": {
+            "scheme": "tealblues",
+            "domain": [0, 80]
+          },
+          "legend": {
+            "orient": "bottom",
+            "direction": "horizontal",
+            "titleFontSize": 11,
+            "labelFontSize": 10,
+            "gradientLength": 260
+          }
+        },
+        "tooltip": [
+          {
+            "field": "state",
+            "type": "nominal",
+            "title": "State"
+          },
+          {
+            "field": "total_guests_2024",
+            "type": "quantitative",
+            "title": "Total hotel guests",
+            "format": ","
+          },
+          {
+            "field": "domestic_guests_2024",
+            "type": "quantitative",
+            "title": "Domestic guests",
+            "format": ","
+          },
+          {
+            "field": "foreign_guests_2024",
+            "type": "quantitative",
+            "title": "Foreign guests",
+            "format": ","
+          },
+          {
+            "field": "foreign_share",
+            "type": "quantitative",
+            "title": "Foreign guest share (%)",
+            "format": ".1f"
+          }
+        ]
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.state == 'Penang' || datum.state == 'Pulau Pinang' || datum.state == 'Selangor' || datum.state == 'Kuala Lumpur' || datum.state == 'Sabah'"
+        },
+        {
+          "calculate": "datum.state == 'Kuala Lumpur' ? 101.92 : datum.state == 'Selangor' ? 101.00 : datum.state == 'Sabah' ? 115.18 : datum.state == 'Pulau Pinang' || datum.state == 'Penang' ? 100.52 : datum.longitude",
+          "as": "label_longitude"
+        },
+        {
+          "calculate": "datum.state == 'Kuala Lumpur' ? 3.30 : datum.state == 'Selangor' ? 2.98 : datum.state == 'Sabah' ? 5.58 : datum.state == 'Pulau Pinang' || datum.state == 'Penang' ? 5.55 : datum.latitude",
+          "as": "label_latitude"
+        },
+        {
+          "calculate": "datum.state == 'Pulau Pinang' ? 'Penang' : datum.state",
+          "as": "label_state"
+        }
+      ],
+      "projection": {
+        "type": "mercator",
+        "center": [109, 4],
+        "scale": 2600,
+        "translate": [435, 235]
+      },
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "baseline": "middle",
+        "fontSize": 11,
+        "fontWeight": "bold",
+        "color": "#17324d"
+      },
+      "encoding": {
+        "longitude": {
+          "field": "label_longitude",
+          "type": "quantitative"
+        },
+        "latitude": {
+          "field": "label_latitude",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "label_state",
+          "type": "nominal"
+        }
+      }
+    }
+  ],
+  "config": {
+    "background": "white",
+    "view": {
+      "stroke": null
+    }
+  }
+}

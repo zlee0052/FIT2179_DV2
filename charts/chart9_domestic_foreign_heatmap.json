@@ -1,0 +1,181 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": 720,
+  "height": 500,
+  "title": {
+    "text": "Domestic Guests Drove Most State Hotel Markets",
+    "subtitle": "Share of hotel guests by guest type and state, 2024",
+    "anchor": "start",
+    "fontSize": 20,
+    "subtitleFontSize": 13,
+    "fontWeight": "bold",
+    "subtitleFontWeight": "normal",
+    "offset": 12
+  },
+  "data": {
+    "url": "data/hotel_guests_by_state_2023_2024.csv"
+  },
+  "transform": [
+    {
+      "filter": "datum.state != 'Putrajaya' && datum.state != 'Labuan'"
+    },
+    {
+      "calculate": "datum.domestic_guests_2024 / datum.total_guests_2024 * 100",
+      "as": "domestic_share"
+    },
+    {
+      "calculate": "datum.foreign_guests_2024 / datum.total_guests_2024 * 100",
+      "as": "foreign_share"
+    },
+    {
+      "fold": ["domestic_share", "foreign_share"],
+      "as": ["guest_type_raw", "share_pct"]
+    },
+    {
+      "calculate": "datum.guest_type_raw == 'domestic_share' ? 'Domestic' : 'Foreign'",
+      "as": "guest_type"
+    },
+    {
+      "calculate": "format(datum.share_pct, '.0f') + '%'",
+      "as": "share_label"
+    }
+  ],
+  "layer": [
+    {
+      "mark": {
+        "type": "rect",
+        "stroke": "white",
+        "strokeWidth": 1.5,
+        "cornerRadius": 4
+      },
+      "encoding": {
+        "y": {
+          "field": "state",
+          "type": "nominal",
+          "title": null,
+          "sort": {
+            "field": "foreign_share",
+            "order": "descending"
+          },
+          "axis": {
+            "labelFontSize": 11,
+            "labelColor": "#374151"
+          }
+        },
+        "x": {
+          "field": "guest_type",
+          "type": "nominal",
+          "title": null,
+          "sort": ["Domestic", "Foreign"],
+          "axis": {
+            "orient": "top",
+            "labelAngle": 0,
+            "labelFontSize": 12,
+            "labelFontWeight": "bold",
+            "labelColor": "#374151",
+            "labelPadding": 8
+          }
+        },
+        "color": {
+          "field": "share_pct",
+          "type": "quantitative",
+          "title": "Guest share (%)",
+          "scale": {
+            "scheme": "oranges",
+            "domain": [0, 100]
+          },
+          "legend": {
+            "orient": "bottom",
+            "direction": "horizontal",
+            "titleFontSize": 11,
+            "labelFontSize": 10,
+            "gradientLength": 260,
+            "values": [0, 25, 50, 75, 100]
+          }
+        },
+        "tooltip": [
+          {
+            "field": "state",
+            "type": "nominal",
+            "title": "State"
+          },
+          {
+            "field": "guest_type",
+            "type": "nominal",
+            "title": "Guest type"
+          },
+          {
+            "field": "share_pct",
+            "type": "quantitative",
+            "title": "Share of hotel guests (%)",
+            "format": ".1f"
+          },
+          {
+            "field": "domestic_guests_2024",
+            "type": "quantitative",
+            "title": "Domestic guests",
+            "format": ","
+          },
+          {
+            "field": "foreign_guests_2024",
+            "type": "quantitative",
+            "title": "Foreign guests",
+            "format": ","
+          },
+          {
+            "field": "total_guests_2024",
+            "type": "quantitative",
+            "title": "Total guests",
+            "format": ","
+          }
+        ]
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "fontSize": 11,
+        "fontWeight": "bold"
+      },
+      "encoding": {
+        "y": {
+          "field": "state",
+          "type": "nominal",
+          "sort": {
+            "field": "foreign_share",
+            "order": "descending"
+          }
+        },
+        "x": {
+          "field": "guest_type",
+          "type": "nominal",
+          "sort": ["Domestic", "Foreign"],
+          "axis": {
+            "labelAngle": 0
+          }
+        },
+        "text": {
+          "field": "share_label",
+          "type": "nominal"
+        },
+        "color": {
+          "condition": {
+            "test": "datum.share_pct >= 60",
+            "value": "white"
+          },
+          "value": "#111827"
+        }
+      }
+    }
+  ],
+  "config": {
+    "background": "white",
+    "view": {
+      "stroke": null
+    },
+    "axis": {
+      "domain": false,
+      "ticks": false
+    }
+  }
+}

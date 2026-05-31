@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Malaysia Tourism Rebound</title>
+
+  <link rel="stylesheet" href="styles.css" />
+
+  <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-lite@5"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
+</head>
+
+<body>
+  <main>
+
+    <section class="hero">
+      <p class="kicker">FIT2179 Data Visualisation 2</p>
+      <h1>Malaysia’s Tourism Rebound Was Strong — But Uneven</h1>
+      <p class="subtitle">
+        In 2024, Malaysia’s tourism recovery was clear across arrivals, spending, hotel demand,
+        and air connectivity. Yet the rebound was not evenly spread across source markets,
+        spending categories, and states.
+      </p>
+    </section>
+
+    <section class="section-header">
+      <p class="section-label">Part 1</p>
+      <h2>The rebound was visible in arrivals and entry routes</h2>
+      <p>
+        Malaysia’s recovery first appears in the return of foreign visitors and the gateways they used
+        to enter the country.
+      </p>
+    </section>
+
+    <section class="story-section">
+      <div class="text-block">
+        <h2>1. Tourism returned strongly in 2024</h2>
+        <p>
+          Foreign visitor arrivals were higher in every month of 2024 than in 2023. The recovery
+          was especially visible toward the end of the year, with December recording the highest
+          monthly arrivals.
+        </p>
+      </div>
+      <div id="vis1" class="chart"></div>
+    </section>
+
+    <section class="story-section">
+      <div class="text-block">
+        <h2>2. Visitors mainly arrived by land and air</h2>
+        <p>
+          Land and air were the dominant entry modes for foreign visitors. Land travel reflected
+          the importance of regional neighbours, while air arrivals highlighted the role of restored
+          international flight connectivity.
+        </p>
+      </div>
+      <div id="vis2" class="chart"></div>
+    </section>
+
+    <section class="section-header">
+      <p class="section-label">Part 2</p>
+      <h2>The recovery was shaped by different markets and spending patterns</h2>
+      <p>
+        Visitor recovery was not only about how many people arrived. Different source markets
+        contributed different levels of growth, value, and spending impact.
+      </p>
+    </section>
+
+    <section class="story-section">
+      <div class="text-block">
+        <h2>3. Regional neighbours remained Malaysia’s core markets</h2>
+        <p>
+          ASEAN and nearby Asian markets formed the backbone of Malaysia’s visitor arrivals.
+          Singapore remained the dominant source market, showing the importance of cross-border
+          travel in the recovery.
+        </p>
+      </div>
+      <div id="vis3" class="chart"></div>
+    </section>
+
+    <section class="story-section">
+      <div class="text-block">
+        <h2>4. Some markets recovered much faster than others</h2>
+        <p>
+          The recovery was not equal across all major visitor markets. China and India stood out
+          as strong rebound markets, showing that growth came from more than just Malaysia’s
+          largest neighbouring sources.
+        </p>
+      </div>
+      <div id="vis4" class="chart"></div>
+    </section>
+
+    <section class="story-section">
+      <div class="text-block">
+        <h2>5. Visitor spending benefited specific sectors</h2>
+        <p>
+          Tourism recovery was not only about arrivals. Shopping, accommodation, and food and
+          beverages captured the largest shares of spending, showing where visitor activity flowed
+          into the economy.
+        </p>
+      </div>
+      <div id="vis5" class="chart"></div>
+    </section>
+
+    <section class="story-section">
+      <div class="text-block">
+        <h2>6. Visitor volume and value told different stories</h2>
+        <p>
+          Some markets sent many visitors, while others generated higher receipts relative to
+          their arrival numbers. Bubble size shows average spending per visitor, highlighting the
+          difference between high-volume and high-value markets.
+        </p>
+      </div>
+      <div id="vis6" class="chart"></div>
+    </section>
+
+    <section class="section-header">
+      <p class="section-label">Part 3</p>
+      <h2>The rebound was uneven across places and supported by infrastructure</h2>
+      <p>
+        The final section shifts from national totals to geography and capacity, showing how hotel
+        demand and aviation links shaped the recovery across Malaysia.
+      </p>
+    </section>
+
+    <section class="story-section">
+      <div class="text-block">
+        <h2>7. Hotel demand varied across Malaysia</h2>
+        <p>
+          This choropleth map uses hotel occupancy rate, a percentage, rather than raw hotel room
+          totals. Darker states had stronger hotel demand, showing that recovery intensity differed
+          across Malaysia.
+        </p>
+      </div>
+      <div id="vis7" class="chart"></div>
+    </section>
+
+    <section class="story-section">
+      <div class="text-block">
+        <h2>8. Hotel guests clustered in key states</h2>
+        <p>
+          A proportional symbol map is used because hotel guests are absolute counts, not normalised
+          values. Larger circles indicate states with more hotel guests, while colour shows the share
+          of foreign guests.
+        </p>
+      </div>
+      <div id="vis8" class="chart"></div>
+    </section>
+
+    <section class="story-section">
+      <div class="text-block">
+        <h2>9. Domestic guests also shaped state tourism</h2>
+        <p>
+          The heatmap shows how each state’s hotel market was split between domestic and foreign
+          guests. Darker cells indicate a larger share, revealing that many states relied heavily
+          on domestic travellers.
+        </p>
+      </div>
+      <div id="vis9" class="chart"></div>
+    </section>
+
+    <section class="story-section">
+      <div class="text-block">
+        <h2>10. Air connectivity supported the rebound</h2>
+        <p>
+          Weekly seat capacity shows how Malaysia reconnected with international regions. Upward
+          slopes indicate stronger flight access in 2024, helping explain how visitor recovery was
+          supported by transport capacity.
+        </p>
+      </div>
+      <div id="vis10" class="chart"></div>
+    </section>
+
+    <section class="conclusion">
+      <p class="section-label">Conclusion</p>
+      <h2>Malaysia’s tourism recovery was strong, but not uniform</h2>
+      <p>
+        Malaysia’s 2024 tourism rebound was clear across arrivals, spending, hotel demand, and air
+        connectivity. However, the recovery was uneven: nearby markets delivered volume, selected
+        Asian markets drove growth, domestic guests remained important across many states, and
+        hotel demand varied geographically.
+      </p>
+    </section>
+
+    <footer class="metadata">
+      <p>
+        <strong>Data sources:</strong> Tourism Malaysia statistics reports and official tourism datasets
+        used for visitor arrivals, source markets, tourism receipts, hotel guests, hotel occupancy, and
+        air connectivity. 
+        (https://data.tourism.gov.my) 
+        (https://data.tourism.gov.my/frontend/pdf/New_Final_Malaysia%20Tourism%20Statistics%20in%20Brief%202024.pdf) 
+        (https://data.tourism.gov.my/frontend/pdf/Malaysia_Tourist_Profile_2024%20v2.pdf)
+      </p>
+      <p>
+        <strong>Created by:</strong> Lee Zhi Ming, FIT2179 Data Visualisation 2, Monash University Malaysia,
+        May 2026.
+      </p>
+      <p>
+        <strong>Tools:</strong> Vega-Lite, HTML, CSS, and JavaScript. Generative AI was used for coding
+        assistance, wording refinement, and debugging support.
+      </p>
+    </footer>
+
+  </main>
+
+  <script src="js/vega_lite_vis.js"></script>
+</body>
+</html>

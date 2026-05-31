@@ -1,0 +1,17 @@
+state,topo_name,total_hotel_guests_2024,domestic_guests_2024,foreign_guests_2024,foreign_share_2024_pct,total_guest_growth_pct,source_url,rooms_2024,hotels_2024,aor_2024_pct,aor_change_pp
+Kuala Lumpur,Kuala Lumpur,21910522,9781082,12129440,55.4,19.0,https://data.tourism.gov.my/frontend/pdf/New_Final_Malaysia%20Tourism%20Statistics%20in%20Brief%202024.pdf,63973,464,62.6,3.5
+Putrajaya,Putrajaya,777420,555827,221593,28.5,17.8,https://data.tourism.gov.my/frontend/pdf/New_Final_Malaysia%20Tourism%20Statistics%20in%20Brief%202024.pdf,2580,13,56.5,1.5
+Selangor,Selangor,9481386,6131477,3349909,35.3,8.1,https://data.tourism.gov.my/frontend/pdf/New_Final_Malaysia%20Tourism%20Statistics%20in%20Brief%202024.pdf,34883,460,51.6,1.7
+Pulau Pinang,Penang,8237072,5236584,3000488,36.4,13.3,https://data.tourism.gov.my/frontend/pdf/New_Final_Malaysia%20Tourism%20Statistics%20in%20Brief%202024.pdf,26692,376,56.8,3.9
+Perak,Perak,5157114,4186503,970611,18.8,0.3,https://data.tourism.gov.my/frontend/pdf/New_Final_Malaysia%20Tourism%20Statistics%20in%20Brief%202024.pdf,19299,481,46.9,-0.4
+Kedah,Kedah,5222427,3237364,1985063,38.0,20.8,https://data.tourism.gov.my/frontend/pdf/New_Final_Malaysia%20Tourism%20Statistics%20in%20Brief%202024.pdf,18600,328,46.6,3.2
+Perlis,Perlis,322010,313443,8567,2.7,-0.6,https://data.tourism.gov.my/frontend/pdf/New_Final_Malaysia%20Tourism%20Statistics%20in%20Brief%202024.pdf,1489,44,41.0,-1.2
+Negeri Sembilan,Negeri Sembilan,2530771,2071056,459715,18.2,3.8,https://data.tourism.gov.my/frontend/pdf/New_Final_Malaysia%20Tourism%20Statistics%20in%20Brief%202024.pdf,10856,166,42.2,1.2
+Melaka,Melaka,4908866,3392342,1516524,30.9,0.1,https://data.tourism.gov.my/frontend/pdf/New_Final_Malaysia%20Tourism%20Statistics%20in%20Brief%202024.pdf,20159,354,45.4,0.7
+Johor,Johor,10397810,7394268,3003542,28.9,8.5,https://data.tourism.gov.my/frontend/pdf/New_Final_Malaysia%20Tourism%20Statistics%20in%20Brief%202024.pdf,36043,552,52.3,1.6
+Pahang,Pahang,14482514,11550656,2931858,20.2,7.8,https://data.tourism.gov.my/frontend/pdf/New_Final_Malaysia%20Tourism%20Statistics%20in%20Brief%202024.pdf,34323,501,75.6,1.5
+Terengganu,Terengganu,2694097,2412518,281579,10.5,4.2,https://data.tourism.gov.my/frontend/pdf/New_Final_Malaysia%20Tourism%20Statistics%20in%20Brief%202024.pdf,11190,256,46.3,1.5
+Kelantan,Kelantan,1491704,1389452,102252,6.9,6.3,https://data.tourism.gov.my/frontend/pdf/New_Final_Malaysia%20Tourism%20Statistics%20in%20Brief%202024.pdf,6362,170,43.2,2.0
+Sabah,Sabah,7393069,4257096,3135973,42.4,10.2,https://data.tourism.gov.my/frontend/pdf/New_Final_Malaysia%20Tourism%20Statistics%20in%20Brief%202024.pdf,27208,540,51.6,2.6
+Labuan,Labuan,451763,399785,51978,11.5,-32.4,https://data.tourism.gov.my/frontend/pdf/New_Final_Malaysia%20Tourism%20Statistics%20in%20Brief%202024.pdf,2296,50,37.0,3.7
+Sarawak,Sarawak,7185071,5739958,1445113,20.1,8.5,https://data.tourism.gov.my/frontend/pdf/New_Final_Malaysia%20Tourism%20Statistics%20in%20Brief%202024.pdf,27913,522,47.7,1.7

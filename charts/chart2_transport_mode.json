@@ -1,0 +1,204 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": 720,
+  "height": 360,
+  "title": {
+    "text": "Land and Air Gateways Carried the Recovery",
+    "subtitle": "Foreign visitors by mode of transport, 2023 and 2024",
+    "anchor": "start",
+    "fontSize": 20,
+    "subtitleFontSize": 13,
+    "fontWeight": "bold",
+    "subtitleFontWeight": "normal",
+    "offset": 12
+  },
+  "data": {
+    "url": "data/mode_of_transport_2023_2024.csv"
+  },
+  "layer": [
+    {
+      "mark": {
+        "type": "rule",
+        "strokeWidth": 3,
+        "color": "#d1d5db"
+      },
+      "encoding": {
+        "y": {
+          "field": "mode",
+          "type": "nominal",
+          "sort": ["Land", "Air", "Sea", "Rail"],
+          "title": null,
+          "axis": {
+            "labelFontSize": 12,
+            "labelColor": "#374151"
+          }
+        },
+        "x": {
+          "field": "visitors_2023",
+          "type": "quantitative",
+          "title": "Foreign visitors",
+          "scale": {
+            "zero": true,
+            "domain": [0, 27000000]
+          },
+          "axis": {
+            "values": [0, 5000000, 10000000, 15000000, 20000000, 25000000],
+            "labelExpr": "datum.value == 0 ? '0' : format(datum.value / 1000000, '.0f') + 'M'",
+            "labelFontSize": 11,
+            "titleFontSize": 12
+          }
+        },
+        "x2": {
+          "field": "visitors_2024"
+        }
+      }
+    },
+    {
+      "transform": [
+        {
+          "fold": ["visitors_2023", "visitors_2024"],
+          "as": ["year_type", "visitors"]
+        },
+        {
+          "calculate": "datum.year_type == 'visitors_2023' ? '2023' : '2024'",
+          "as": "year"
+        }
+      ],
+      "mark": {
+        "type": "point",
+        "filled": true,
+        "size": 120,
+        "stroke": "white",
+        "strokeWidth": 1.5
+      },
+      "encoding": {
+        "y": {
+          "field": "mode",
+          "type": "nominal",
+          "sort": ["Land", "Air", "Sea", "Rail"],
+          "title": null
+        },
+        "x": {
+          "field": "visitors",
+          "type": "quantitative",
+          "scale": {
+            "zero": true,
+            "domain": [0, 27000000]
+          }
+        },
+        "color": {
+          "field": "year",
+          "type": "nominal",
+          "title": "Year",
+          "scale": {
+            "domain": ["2023", "2024"],
+            "range": ["#4C78A8", "#F58518"]
+          },
+          "legend": {
+            "orient": "bottom",
+            "direction": "horizontal",
+            "titleFontSize": 12,
+            "labelFontSize": 11
+          }
+        },
+        "tooltip": [
+          {
+            "field": "mode",
+            "type": "nominal",
+            "title": "Transport mode"
+          },
+          {
+            "field": "year",
+            "type": "nominal",
+            "title": "Year"
+          },
+          {
+            "field": "visitors",
+            "type": "quantitative",
+            "title": "Foreign visitors",
+            "format": ","
+          },
+          {
+            "field": "growth_pct",
+            "type": "quantitative",
+            "title": "Growth from 2023 (%)",
+            "format": ".1f"
+          },
+          {
+            "field": "share_2024_pct",
+            "type": "quantitative",
+            "title": "Share of 2024 visitors (%)",
+            "format": ".1f"
+          }
+        ]
+      }
+    },
+    {
+      "transform": [
+        {
+          "calculate": "format(datum.growth_pct, '+.1f') + '%'",
+          "as": "growth_label"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "baseline": "middle",
+        "dx": 12,
+        "fontSize": 11,
+        "fontWeight": "bold",
+        "color": "#17324d"
+      },
+      "encoding": {
+        "y": {
+          "field": "mode",
+          "type": "nominal",
+          "sort": ["Land", "Air", "Sea", "Rail"]
+        },
+        "x": {
+          "field": "visitors_2024",
+          "type": "quantitative",
+          "scale": {
+            "zero": true,
+            "domain": [0, 27000000]
+          }
+        },
+        "text": {
+          "field": "growth_label",
+          "type": "nominal"
+        },
+        "tooltip": [
+          {
+            "field": "mode",
+            "type": "nominal",
+            "title": "Transport mode"
+          },
+          {
+            "field": "visitors_2024",
+            "type": "quantitative",
+            "title": "Visitors in 2024",
+            "format": ","
+          },
+          {
+            "field": "growth_label",
+            "type": "nominal",
+            "title": "Growth from 2023"
+          }
+        ]
+      }
+    }
+  ],
+  "config": {
+    "background": "white",
+    "axis": {
+      "gridColor": "#e5e7eb",
+      "domainColor": "#9ca3af",
+      "tickColor": "#9ca3af",
+      "labelColor": "#374151",
+      "titleColor": "#111827"
+    },
+    "view": {
+      "stroke": null
+    }
+  }
+}

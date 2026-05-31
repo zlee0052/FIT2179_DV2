@@ -1,0 +1,129 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": 800,
+  "height": 440,
+  "title": {
+    "text": "Hotel Demand Was Uneven Across Malaysia",
+    "subtitle": "Average hotel occupancy rate by state. Select a year to compare 2023 and 2024.",
+    "anchor": "start",
+    "fontSize": 20,
+    "subtitleFontSize": 13,
+    "fontWeight": "bold",
+    "subtitleFontWeight": "normal",
+    "offset": 12
+  },
+  "params": [
+    {
+      "name": "selected_year",
+      "value": 2024,
+      "bind": {
+        "input": "select",
+        "options": [2023, 2024],
+        "name": "Select year: "
+      }
+    }
+  ],
+  "data": {
+    "url": "https://raw.githubusercontent.com/jnewbery/CartogramMalaysia/master/public/data/malaysia-states.topojson",
+    "format": {
+      "type": "topojson",
+      "feature": "states"
+    }
+  },
+  "projection": {
+    "type": "mercator",
+    "center": [109, 4],
+    "scale": 2800,
+    "translate": [435, 235]
+  },
+  "transform": [
+    {
+      "lookup": "properties.Name",
+      "from": {
+        "data": {
+          "url": "data/hotel_occupancy_by_state_2023_2024.csv"
+        },
+        "key": "topo_name",
+        "fields": [
+          "state",
+          "aor_2024_pct",
+          "aor_2023_pct",
+          "difference_pp"
+        ]
+      }
+    },
+    {
+      "calculate": "selected_year == 2024 ? datum.aor_2024_pct : datum.aor_2023_pct",
+      "as": "selected_aor"
+    },
+    {
+      "calculate": "format(datum.selected_aor, '.1f') + '%'",
+      "as": "aor_label"
+    },
+    {
+      "calculate": "datum.difference_pp > 0 ? '+' + format(datum.difference_pp, '.1f') : format(datum.difference_pp, '.1f')",
+      "as": "change_label"
+    }
+  ],
+  "mark": {
+    "type": "geoshape",
+    "stroke": "white",
+    "strokeWidth": 1
+  },
+  "encoding": {
+    "color": {
+      "field": "selected_aor",
+      "type": "quantitative",
+      "title": "Occupancy rate (%)",
+      "scale": {
+        "scheme": "blues",
+        "domain": [30, 80]
+      },
+      "legend": {
+        "orient": "bottom",
+        "direction": "horizontal",
+        "titleFontSize": 11,
+        "labelFontSize": 10,
+        "gradientLength": 260,
+        "values": [30, 40, 50, 60, 70, 80]
+      }
+    },
+    "tooltip": [
+      {
+        "field": "state",
+        "type": "nominal",
+        "title": "State"
+      },
+      {
+        "field": "selected_aor",
+        "type": "quantitative",
+        "title": "Selected year occupancy (%)",
+        "format": ".1f"
+      },
+      {
+        "field": "aor_2023_pct",
+        "type": "quantitative",
+        "title": "2023 occupancy (%)",
+        "format": ".1f"
+      },
+      {
+        "field": "aor_2024_pct",
+        "type": "quantitative",
+        "title": "2024 occupancy (%)",
+        "format": ".1f"
+      },
+      {
+        "field": "difference_pp",
+        "type": "quantitative",
+        "title": "Change from 2023 (pp)",
+        "format": "+.1f"
+      }
+    ]
+  },
+  "config": {
+    "background": "white",
+    "view": {
+      "stroke": null
+    }
+  }
+}
